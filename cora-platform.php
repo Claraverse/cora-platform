@@ -15,7 +15,7 @@ add_action('admin_menu', function () {
         'manage_options',
         'cora',
         function () {
-            echo '<h1>Cora Platform Loade2d</h1>';
+            echo '<h1>Cora Platfrm Loade2d</h1>';
         },
         'dashicons-grid-view',
         2
