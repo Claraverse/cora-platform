@@ -1,32 +1,41 @@
 <?php
-use Cora\Core\Modules\Registry;
+namespace Cora\Core\UI;
 
-$modules = Registry::enabled();
-?>
+if (!defined('ABSPATH'))
+    exit;
 
-<nav class="cora-sidebar">
-    <div class="cora-sidebar-top">
-        <span class="cora-logo">Cora</span>
-        <button class="cora-toggle">☰</button>
-    </div>
+class Sidebar
+{
 
-    <ul class="cora-nav">
-        <li class="<?= empty($_GET['view']) ? 'active' : '' ?>">
-            <a href="<?= admin_url('admin.php?page=cora') ?>">
-                <span>Dashboard</span>
-            </a>
-        </li>
+    /**
+     * Returns sidebar items dynamically
+     */
+    public static function items(): array
+    {
 
-        <?php foreach ($modules as $slug => $module): ?>
-            <li class="<?= ($_GET['view'] ?? '') === $slug ? 'active' : '' ?>">
-                <a href="<?= admin_url('admin.php?page=cora&view=' . $slug) ?>">
-                    <span><?= esc_html($module['label']) ?></span>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+        return [
 
-    <div class="cora-sidebar-footer">
-        <a href="<?= admin_url() ?>">WordPress Admin</a>
-    </div>
-</nav>
+            [
+                'key' => 'dashboard',
+                'label' => 'Dashboard',
+                'icon' => 'dashboard',
+                'view' => 'dashboard',
+                'order' => 10,
+                'cap' => 'read',
+            ],
+
+
+            /*
+             | Future items go here when they actually exist
+             |
+             | Example:
+             | [
+             |   'key'   => 'post-types',
+             |   'label' => 'Post Types',
+             |   'icon'  => 'post',
+             |   'view'  => 'post-types',
+             | ]
+             */
+        ];
+    }
+}

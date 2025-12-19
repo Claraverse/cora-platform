@@ -33,6 +33,7 @@ require_once CORA_PATH . 'core/Admin.php';
 require_once CORA_PATH . 'core/Assets.php';
 require_once CORA_PATH . 'core/icons.php';
 require_once CORA_PATH . 'core/modules/registry.php';
+require_once CORA_PATH . 'ui/components/Sidebar.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -42,17 +43,17 @@ require_once CORA_PATH . 'core/modules/registry.php';
 
 define( 'CORA_ACCESS_ENABLED', false );
 
-if ( CORA_ACCESS_ENABLED ) {
+// if ( CORA_ACCESS_ENABLED ) {
 
-    require_once CORA_PATH . 'core/Access/Capabilities.php';
-    require_once CORA_PATH . 'core/Access/Roles.php';
-    require_once CORA_PATH . 'core/Access/Guards.php';
+//     require_once CORA_PATH . 'core/Access/Capabilities.php';
+//     require_once CORA_PATH . 'core/Access/Roles.php';
+//     require_once CORA_PATH . 'core/Access/Guards.php';
 
-    $admin_blocker = CORA_PATH . 'core/Access/AdminBlocker.php';
-    if ( file_exists( $admin_blocker ) ) {
-        require_once $admin_blocker;
-    }
-}
+//     $admin_blocker = CORA_PATH . 'core/Access/AdminBlocker.php';
+//     if ( file_exists( $admin_blocker ) ) {
+//         require_once $admin_blocker;
+//     }
+// }
 
 /*
 |--------------------------------------------------------------------------

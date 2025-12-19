@@ -1,8 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+if (!defined('ABSPATH')) exit;
+
+use Cora\Core\UI\Sidebar;
 
 // current view
 $current_view = isset($_GET['view']) ? sanitize_key($_GET['view']) : 'dashboard';
+
+// sidebar items (single source of truth)
+$sidebar_items = Sidebar::items();
 ?>
 
 <div class="cora-app-shell">
@@ -17,62 +22,24 @@ $current_view = isset($_GET['view']) ? sanitize_key($_GET['view']) : 'dashboard'
 
         <nav class="cora-nav">
 
-            <a href="<?php echo admin_url('admin.php?page=cora&view=dashboard'); ?>"
-               class="<?php echo ($current_view === 'dashboard') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('dashboard'); ?></span>
-                <span class="label">Dashboard</span>
-            </a>
-
-            <a href="<?php echo admin_url('admin.php?page=cora&view=design'); ?>"
-               class="<?php echo ($current_view === 'design') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('design'); ?></span>
-                <span class="label">Design</span>
-            </a>
-
-            <a href="<?php echo admin_url('admin.php?page=cora&view=develop'); ?>"
-               class="<?php echo ($current_view === 'develop') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('develop'); ?></span>
-                <span class="label">Develop</span>
-            </a>
-
-            <a href="<?php echo admin_url('admin.php?page=cora&view=marketing'); ?>"
-               class="<?php echo ($current_view === 'marketing') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('marketing'); ?></span>
-                <span class="label">Marketing</span>
-            </a>
-
-            <a href="<?php echo admin_url('admin.php?page=cora&view=operations'); ?>"
-               class="<?php echo ($current_view === 'operations') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('operations'); ?></span>
-                <span class="label">Operations</span>
-            </a>
-
-            <a href="<?php echo admin_url('admin.php?page=cora&view=ai'); ?>"
-               class="<?php echo ($current_view === 'ai') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('ai'); ?></span>
-                <span class="label">AI</span>
-            </a>
-
-            <a href="<?php echo admin_url('admin.php?page=cora&view=seo'); ?>"
-               class="<?php echo ($current_view === 'seo') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('seo'); ?></span>
-                <span class="label">SEO</span>
-            </a>
-
-            <a href="<?php echo admin_url('admin.php?page=cora&view=finance'); ?>"
-               class="<?php echo ($current_view === 'finance') ? 'active' : ''; ?>">
-                <span class="icon"><?php echo cora_icon('finance'); ?></span>
-                <span class="label">Finance</span>
-            </a>
+            <?php foreach ($sidebar_items as $item): ?>
+                <a href="<?php echo admin_url('admin.php?page=cora&view=' . $item['view']); ?>"
+                   class="<?php echo ($current_view === $item['view']) ? 'active' : ''; ?>">
+                    <span class="icon"><?php echo cora_icon($item['icon']); ?></span>
+                    <span class="label"><?php echo esc_html($item['label']); ?></span>
+                </a>
+            <?php endforeach; ?>
 
             <div class="cora-nav-divider"></div>
 
-            <a href="<?php echo admin_url(); ?>">
+            <!-- Utility (always last) -->
+            <a href="<?php echo admin_url(); ?>" class="cora-nav-item-muted">
                 <span class="icon"><?php echo cora_icon('wp'); ?></span>
                 <span class="label">WordPress Admin</span>
             </a>
 
         </nav>
+
     </aside>
 
     <!-- Main Content -->
@@ -80,7 +47,7 @@ $current_view = isset($_GET['view']) ? sanitize_key($_GET['view']) : 'dashboard'
         <?php
         $view_file = CORA_PATH . 'ui/views/' . $current_view . '.php';
 
-        if ( file_exists( $view_file ) ) {
+        if (file_exists($view_file)) {
             require $view_file;
         } else {
             require CORA_PATH . 'ui/views/dashboard.php';
