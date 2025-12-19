@@ -1,7 +1,7 @@
 <?php
 namespace Cora\Core;
 
-use Cora\Core\Access\Guards;
+// use Cora\Core\Access\Guards;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -20,19 +20,19 @@ class Admin {
     public static function register_menu() {
 
         // Only users who can access Cora should see the menu
-        if ( ! Guards::can_access_platform() ) {
-            return;
-        }
+       
+        // Access control temporarily disabled
 
-        add_menu_page(
-            'Cora Platform',
-            'Cora',
-            'read',                     // capability checked manually via Guards
-            'cora',
-            [ self::class, 'render_app' ],
-            'dashicons-grid-view',
-            2
-        );
+
+      add_menu_page(
+    'Cora Platform',
+    'Cora',
+    'manage_options',
+    'cora',
+    [ self::class, 'render_app' ],
+    'dashicons-grid-view',
+    2
+);
     }
 
     /**
@@ -40,9 +40,9 @@ class Admin {
      */
     public static function render_app() {
 
-        if ( ! Guards::can_access_platform() ) {
-            wp_die( __( 'You do not have permission to access Cora.', 'cora' ) );
-        }
+        // if ( ! Guards::can_access_platform() ) {
+        //     wp_die( __( 'You do not have permission to access Cora.', 'cora' ) );
+        // }
 
         require CORA_PATH . 'ui/layout.php';
     }

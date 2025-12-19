@@ -1,0 +1,257 @@
+/* =========================
+   WP Admin Isolation
+   ========================= */
+
+body.toplevel_page_cora #adminmenu,
+body.toplevel_page_cora #wpadminbar,
+body.toplevel_page_cora #wpfooter {
+    display: none !important;
+}
+
+body.toplevel_page_cora #wpcontent,
+body.toplevel_page_cora #wpbody-content {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+body.toplevel_page_cora.admin-bar {
+    padding-top: 0 !important;
+}
+/* Hide WP admin background only inside Cora */
+body.toplevel_page_cora #adminmenuback {
+    display: none !important;
+}
+
+
+body.toplevel_page_cora #wpbody {
+    padding-top: 0 !important;     margin-top: 0 !important;
+}
+
+/* =========================
+   Cora App Shell
+   ========================= */
+
+.cora-app-shell {
+    display: flex;
+    height: 100vh;
+    background: #f6f6f6;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* Sidebar */
+.cora-sidebar {
+    width: 240px;
+    background: #ffffff;
+    border-right: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.2s ease;
+}
+
+.cora-sidebar.collapsed {
+    width: 64px;
+}
+
+.cora-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+.cora-logo {
+    font-weight: 600;
+}
+
+.cora-toggle {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Nav */
+.cora-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.cora-nav a {
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+}
+
+.cora-nav a.active,
+.cora-nav a:hover {
+    background: #f0f0f0;
+}
+
+/* Main */
+.cora-app-main {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* =========================
+   Dashboard
+   ========================= */
+
+.cora-dashboard {
+    display: grid;
+    gap: 24px;
+    max-width: 1100px;
+}
+
+.cora-card {
+    background: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.cora-card h1,
+.cora-card h2 {
+    margin: 0 0 12px;
+}
+
+.muted {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Status list */
+.cora-status-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cora-status-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+/* Modules */
+.cora-modules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cora-modules .module {
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    font-size: 13px;
+}
+
+/* Actions */
+.cora-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.cora-action {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+/* SVG icons */
+.cora-nav .icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+}
+
+/* Nav item layout */
+.cora-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Divider */
+.cora-nav-divider {
+    height: 1px;
+    background: #eee;
+    margin: 10px 0;
+}
+
+/* Collapsed sidebar behavior */
+.cora-sidebar.collapsed .label {
+    display: none;
+}
+
+.cora-sidebar.collapsed .icon {
+    margin: auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .cora-sidebar {
+        position: fixed;
+        z-index: 1000;
+        height: 100vh;
+        left: -240px;
+    }
+
+    .cora-sidebar.active {
+        left: 0;
+    }
+}
+
+
+
+/* =========================
+   Cora Header Standard
+   ========================= */
+
+.cora-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.cora-header-left h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.cora-header-desc {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.cora-header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.cora-header-btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    color: #111;
+}
+
+.cora-header-btn:hover {
+    background: #f5f5f5;
+}

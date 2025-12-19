@@ -1,7 +1,7 @@
 <?php
 namespace Cora\Core;
 
-use Cora\Core\Access\AdminBlocker;
+// use Cora\Core\Access\AdminBlocker;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
