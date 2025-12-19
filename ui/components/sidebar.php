@@ -24,7 +24,15 @@ class Sidebar
                 'cap' => 'read',
             ],
 
-
+            // TEMP: Media Gallery test
+            [
+                'key' => 'media',
+                'label' => 'Media',
+                'icon' => 'image',
+                'view' => 'media',
+                'order' => 20,
+                'cap' => 'upload_files',
+            ],
             /*
              | Future items go here when they actually exist
              |

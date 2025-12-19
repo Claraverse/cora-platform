@@ -34,6 +34,8 @@ require_once CORA_PATH . 'core/Assets.php';
 require_once CORA_PATH . 'core/icons.php';
 require_once CORA_PATH . 'core/modules/registry.php';
 require_once CORA_PATH . 'ui/components/Sidebar.php';
+// TEMP: Media module (until Modules system is ready)
+require_once CORA_PATH . 'core/Modules/Media/Query.php';
 
 /*
 |--------------------------------------------------------------------------

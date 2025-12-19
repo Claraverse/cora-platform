@@ -2,11 +2,16 @@
    WordPress Admin Isolation (Cora Only)
    ===================================================== */
 
+body.toplevel_page_cora {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 body.toplevel_page_cora #adminmenu,
 body.toplevel_page_cora #adminmenuback,
 body.toplevel_page_cora #wpadminbar,
 body.toplevel_page_cora #wpfooter {
-    display: none !important;
+  display: none !important;
 }
 
 body.toplevel_page_cora,
@@ -14,19 +19,25 @@ body.toplevel_page_cora.admin-bar,
 body.toplevel_page_cora #wpcontent,
 body.toplevel_page_cora #wpbody,
 body.toplevel_page_cora #wpbody-content {
-    margin: 0 !important;
-    padding: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Inspector state */
+body.cora-inspector-open .cora-app-main {
+  margin-right: 360px;
+  transition: margin-right 0.25s ease;
 }
 
 /* =====================================================
-   Cora App Shell
+   App Shell
    ===================================================== */
 
 .cora-app-shell {
-    display: flex;
-    min-height: 100vh;
-    background: #f6f6f6;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  display: flex;
+  min-height: 100vh;
+  background: #f6f6f6;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
 }
 
 /* =====================================================
@@ -34,53 +45,53 @@ body.toplevel_page_cora #wpbody-content {
    ===================================================== */
 
 .cora-sidebar {
-    width: 260px;
-    height: 100vh;
-    position: fixed;
-    inset: 0 auto 0 0;
-    background: #ffffff;
-    border-right: 1px solid #eaeaea;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, width 0.2s ease;
-    z-index: 1000;
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 260px;
+  height: 100vh;
+  background: #fff;
+  border-right: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  transition: transform 0.3s ease, width 0.2s ease;
 }
 
 /* Collapsed (desktop) */
 .cora-sidebar.collapsed {
-    width: 64px;
+  width: 64px;
 }
 
-/* Mobile hidden */
+/* Mobile behavior */
 @media (max-width: 1024px) {
-    .cora-sidebar {
-        transform: translateX(-100%);
-    }
+  .cora-sidebar {
+    transform: translateX(-100%);
+  }
 
-    .cora-sidebar.open {
-        transform: translateX(0);
-    }
+  .cora-sidebar.open {
+    transform: translateX(0);
+  }
 }
 
-/* Sidebar Header */
+/* Sidebar header */
 .cora-sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 16px;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
 }
 
 .cora-logo {
-    font-weight: 600;
-    font-size: 16px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .cora-toggle {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 /* =====================================================
@@ -88,53 +99,53 @@ body.toplevel_page_cora #wpbody-content {
    ===================================================== */
 
 .cora-nav {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 8px;
-    gap: 4px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
 }
 
 .cora-nav a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    color: #111;
-    transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #111;
+  text-decoration: none;
+  transition: background 0.2s ease;
 }
 
 .cora-nav a:hover,
 .cora-nav a.active {
-    background: #f0f0f0;
+  background: #f0f0f0;
 }
 
 /* Icons */
 .cora-nav .icon svg {
-    width: 18px;
-    height: 18px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 1.6;
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
 }
 
 /* Divider */
 .cora-nav-divider {
-    height: 1px;
-    background: #eee;
-    margin: 10px 0;
+  height: 1px;
+  background: #eee;
+  margin: 10px 0;
 }
 
 /* Collapsed behavior */
 .cora-sidebar.collapsed .label {
-    display: none;
+  display: none;
 }
 
 .cora-sidebar.collapsed .icon {
-    margin-inline: auto;
+  margin-inline: auto;
 }
 
 /* =====================================================
@@ -142,17 +153,18 @@ body.toplevel_page_cora #wpbody-content {
    ===================================================== */
 
 .cora-app-main {
-    flex: 1;
-    margin-left: 260px;
-    padding: 24px;
-    overflow-y: auto;
+  flex: 1;
+  margin-left: 260px;
+  padding: 24px;
+  overflow-y: auto;
+  transition: margin 0.25s ease;
 }
 
 /* Mobile main reset */
 @media (max-width: 1024px) {
-    .cora-app-main {
-        margin-left: 0;
-    }
+  .cora-app-main {
+    margin-left: 0;
+  }
 }
 
 /* =====================================================
@@ -160,40 +172,40 @@ body.toplevel_page_cora #wpbody-content {
    ===================================================== */
 
 .cora-dashboard {
-    max-width: 1100px;
-    display: grid;
-    gap: 24px;
+  max-width: 1100px;
+  display: grid;
+  gap: 24px;
 }
 
 .cora-card {
-    background: #ffffff;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .cora-card h1,
 .cora-card h2 {
-    margin: 0 0 12px;
+  margin: 0 0 12px;
 }
 
 .muted {
-    font-size: 14px;
-    color: #666;
+  font-size: 14px;
+  color: #666;
 }
 
-/* Status List */
+/* Status list */
 .cora-status-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .cora-status-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 /* =====================================================
@@ -201,38 +213,156 @@ body.toplevel_page_cora #wpbody-content {
    ===================================================== */
 
 .cora-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
 }
 
 .cora-header-left h1 {
-    margin: 0;
-    font-size: 24px;
+  margin: 0;
+  font-size: 24px;
 }
 
 .cora-header-desc {
-    margin-top: 6px;
-    font-size: 14px;
-    color: #666;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #666;
 }
 
 .cora-header-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .cora-header-btn {
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    background: #ffffff;
-    font-size: 14px;
-    color: #111;
-    text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 14px;
+  color: #111;
+  text-decoration: none;
 }
 
 .cora-header-btn:hover {
-    background: #f5f5f5;
+  background: #f5f5f5;
+}
+
+/* Input */
+.cora-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* =====================================================
+   Media Library
+   ===================================================== */
+
+.cora-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.cora-media-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cora-media-thumb {
+  height: 120px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cora-media-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cora-media-placeholder {
+  font-size: 12px;
+  color: #666;
+}
+
+.cora-media-meta {
+  padding: 8px;
+}
+
+.cora-media-name {
+  font-size: 13px;
+  color: #111;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================================
+   Media Inspector
+   ===================================================== */
+
+.cora-media-inspector {
+  position: fixed;
+  top: 0;
+  right: -360px;
+  width: 360px;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #eee;
+  padding: 16px;
+  z-index: 9999;
+  transition: right 0.25s ease;
+}
+
+.cora-media-inspector.open {
+  right: 0;
+}
+
+.cora-inspector-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.cora-inspector-preview img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.cora-inspector-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cora-inspector-row label {
+  font-size: 12px;
+  color: #666;
+}
+
+.cora-inspector-row span,
+.cora-inspector-row input {
+  font-size: 14px;
+  color: #111;
+}
+
+.cora-inspector-row input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
