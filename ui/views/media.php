@@ -1,17 +1,10 @@
 <?php
+use Cora\core\Modules\Media\Query;
+
 if (!defined('ABSPATH'))
     exit;
 
-use Cora\Modules\Media\Query;
-
-// Load media safely
-$items = [];
-
-try {
-    $items = Query::all();
-} catch (\Throwable $e) {
-    $items = [];
-}
+$media_items = Query::all();
 ?>
 
 <div class="cora-header">
@@ -21,53 +14,40 @@ try {
     </div>
 
     <div class="cora-header-actions">
-        <input type="search" placeholder="Search media..." class="cora-input">
-        <button class="cora-header-btn">Upload</button>
+        <input type="text" class="cora-input" placeholder="Search media..." />
+
+        <!-- IMPORTANT ID -->
+        <button class="cora-header-btn" id="coraMediaUpload">
+            Upload
+        </button>
     </div>
 </div>
 
-<div class="cora-media-grid">
 
-    <?php if (empty($items)): ?>
-        <div class="cora-empty">
-            <p>No media found.</p>
-        </div>
-    <?php endif; ?>
+<?php if (empty($media_items)): ?>
+    <p class="muted">No media found.</p>
+<?php else: ?>
 
-    <?php foreach ($items as $item): ?>
+    <div class="cora-media-grid">
+        <?php foreach ($media_items as $item): ?>
+            <div class="cora-media-card" data-id="<?php echo esc_attr($item['id']); ?>"
+                data-url="<?php echo esc_url($item['url']); ?>" data-title="<?php echo esc_attr($item['title']); ?>"
+                data-type="<?php echo esc_attr($item['type']); ?>">
+                <div class="cora-media-thumb">
+                    <?php if ($item['thumb']): ?>
+                        <img src="<?php echo esc_url($item['thumb']); ?>" alt="">
+                    <?php else: ?>
+                        <span class="cora-media-placeholder">No Preview</span>
+                    <?php endif; ?>
+                </div>
 
-        <?php
-        $id = $item['id'] ?? 0;
-        $title = $item['title'] ?? 'Untitled';
-        $thumb = $item['thumb'] ?? '';
-        $type = $item['type'] ?? 'file';
-        ?>
-
-        <!-- <div class="cora-media-card" data-id="<?php echo esc_attr($id); ?>"> -->
-        <div class="cora-media-card" data-id="<?php echo esc_attr($id); ?>" data-title="<?php echo esc_attr($title); ?>"
-            data-type="<?php echo esc_attr($type); ?>" data-url="<?php echo esc_url($item['url']); ?>"
-            data-thumb="<?php echo esc_url($thumb); ?>">
-
-            <div class="cora-media-thumb">
-
-                <?php if ($thumb): ?>
-                    <img src="<?php echo esc_url($thumb); ?>" alt="">
-                <?php else: ?>
-                    <div class="cora-media-placeholder">
-                        <?php echo esc_html(strtoupper($type)); ?>
+                <div class="cora-media-meta">
+                    <div class="cora-media-name">
+                        <?php echo esc_html($item['title']); ?>
                     </div>
-                <?php endif; ?>
-
+                </div>
             </div>
+        <?php endforeach; ?>
+    </div>
 
-            <div class="cora-media-meta">
-                <span class="cora-media-name">
-                    <?php echo esc_html($title); ?>
-                </span>
-            </div>
-
-        </div>
-
-    <?php endforeach; ?>
-
-</div>
+<?php endif; ?>

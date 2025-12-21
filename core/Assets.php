@@ -22,6 +22,23 @@ class Assets {
             return;
         }
 
+
+          // Only load inside Cora
+        if ( ! str_contains( $hook, 'cora' ) ) {
+            return;
+        }
+             // REQUIRED for media upload
+        wp_enqueue_media();
+
+        // Cora Media JS
+        wp_enqueue_script(
+            'cora-media',
+            plugins_url( 'assets/js/media.js', dirname(__FILE__, 2) ),
+            [ 'jquery' ],
+            '1.0',
+            true
+        );
+
         wp_enqueue_style(
             'cora-admin',
             CORA_URL . 'assets/css/cora-admin.css',

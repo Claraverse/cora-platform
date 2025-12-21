@@ -1,22 +1,25 @@
 <?php
-namespace Cora\Modules\Media;
+namespace Cora\Core\Modules\Media;
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-class Query {
-
-    public static function all(): array {
-
+class Query
+{
+    public static function all(): array
+    {
         $query = new \WP_Query([
             'post_type'      => 'attachment',
             'post_status'    => 'inherit',
             'posts_per_page' => -1,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
         ]);
 
         $items = [];
 
         foreach ($query->posts as $post) {
-
             $thumb = wp_get_attachment_image_url($post->ID, 'medium');
 
             $items[] = [
